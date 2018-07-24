@@ -1,0 +1,23 @@
+{
+  "name": "nm-vpn-switch",
+  "version": "1.0.0",
+  "description": "Manage VPN auto connect on boot.",
+  "main": "out/index.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "npm run compile && npm start",
+    "compile": "tsc --outDir out/ src/*.ts"
+  },
+  "keywords": [
+    "vpn",
+    "linux",
+    "NetworkManager"
+  ],
+  "author": "olback",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^10.5.2",
+    "electron": "^2.0.5",
+    "typescript": "^2.9.2"
+  }
+}
