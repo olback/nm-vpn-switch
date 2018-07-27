@@ -2,6 +2,11 @@
   "name": "nm-vpn-switch",
   "version": "1.0.0",
   "description": "Manage VPN auto connect on boot.",
+  "homepage": "https://github.com/olback/nm-vpn-switch",
+  "repository": {
+    "url": "https://github.com/olback/nm-vpn-switch.git",
+    "type": "git"
+  },
   "main": "out/index.js",
   "scripts": {
     "start": "electron .",
@@ -21,8 +26,10 @@
   },
   "devDependencies": {
     "@types/node": "^10.5.3",
+    "about-window": "^1.12.1",
     "electron": "^1.8.7",
     "electron-packager": "^12.1.0",
+    "opn": "^5.3.0",
     "typescript": "^2.9.2"
   }
 }

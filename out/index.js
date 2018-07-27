@@ -14,7 +14,6 @@ app.on('ready', () => {
         maximizable: false,
         resizable: true,
         icon: path.join(__dirname, '..', 'view', 'img', 'icon.png'),
-        autoHideMenuBar: process.env.NODE_ENV !== 'dev' ? true : false,
         backgroundColor: '#fff',
         darkTheme: true,
         titleBarStyle: 'hiddenInset',
@@ -32,8 +31,11 @@ app.on('ready', () => {
     mainWindow.on('closed', () => {
         app.quit();
     });
+    mainWindow.on('window-all-closed', () => {
+        app.quit();
+    });
     if (process.env.NODE_ENV === 'dev') {
         mainWindow.webContents.openDevTools();
     }
+    ipcEvents_1.ipcEvents();
 });
-ipcEvents_1.ipcEvents();

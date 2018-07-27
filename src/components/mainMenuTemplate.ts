@@ -1,5 +1,7 @@
 import * as process from 'process';
 import * as electron from 'electron';
+import * as about from './aboutWindow';
+import * as opn from 'opn';
 
 const { app } = electron;
 
@@ -39,13 +41,22 @@ export const mainMenuTemplate: Array<any> = [
         label: 'Help',
         submenu: [
             {
-                label: 'About'
+                label: 'About',
+                click() {
+                    about.open();
+                }
             },
             {
-                label: 'Contribute'
+                label: 'Contribute',
+                click() {
+                    opn('https://github.com/olback/nm-vpn-switch')
+                }
             },
             {
-                label: 'Help'
+                label: 'Help',
+                click(){
+                    opn('https://github.com/olback/nm-vpn-switch/issues')
+                }
             }
         ]
     }

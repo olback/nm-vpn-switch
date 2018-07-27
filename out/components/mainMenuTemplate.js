@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const process = require("process");
 const electron = require("electron");
+const about = require("./aboutWindow");
+const opn = require("opn");
 const { app } = electron;
 function accelerator(keys) {
     let accel = keys.join('+');
@@ -30,13 +32,22 @@ exports.mainMenuTemplate = [
         label: 'Help',
         submenu: [
             {
-                label: 'About'
+                label: 'About',
+                click() {
+                    about.open();
+                }
             },
             {
-                label: 'Contribute'
+                label: 'Contribute',
+                click() {
+                    opn('https://github.com/olback/nm-vpn-switch');
+                }
             },
             {
-                label: 'Help'
+                label: 'Help',
+                click() {
+                    opn('https://github.com/olback/nm-vpn-switch/issues');
+                }
             }
         ]
     }
