@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "electron",
+            "request": "launch",
+            "name": "Launch (production)",
+            "appDir": "${workspaceFolder}/out",
+            "env": {
+                "NODE_ENV": "production"
+            },
+            "preLaunchTask": "npm: compile"
+        },
+        {
+            "type": "electron",
+            "request": "launch",
+            "name": "Launch (dev)",
+            "appDir": "${workspaceFolder}/out",
+            "env": {
+                "NODE_ENV": "dev"
+            },
+            "preLaunchTask": "npm: compile"
+        }
+    ]
+}

@@ -5,8 +5,9 @@
   "main": "out/index.js",
   "scripts": {
     "start": "electron .",
-    "dev": "npm run compile && npm start",
-    "compile": "tsc --outDir out/ src/*.ts"
+    "dev": "npm run compile && NODE_ENV=dev npm start",
+    "compile_": "tsc --outDir out/ src/*.ts",
+    "compile": "tsc -p ./"
   },
   "keywords": [
     "vpn",
@@ -16,8 +17,12 @@
   "author": "olback",
   "license": "MIT",
   "dependencies": {
-    "@types/node": "^10.5.2",
-    "electron": "^2.0.5",
+    "materialize-css": "^1.0.0-rc.2"
+  },
+  "devDependencies": {
+    "@types/node": "^10.5.3",
+    "electron": "^1.8.7",
+    "electron-packager": "^12.1.0",
     "typescript": "^2.9.2"
   }
 }
