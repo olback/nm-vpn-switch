@@ -1,12 +1,20 @@
 /*
  * @Author: olback
  * @Date: 2018-07-29 18:43:35
- * @Last Modified by:   olback
- * @Last Modified time: 2018-07-29 18:43:35
+ * @Last Modified by: olback
+ * @Last Modified time: 2018-07-29 23:02:56
  */
 
 const electron = require('electron');
 const { ipcRenderer } = electron;
+
+function showModal(title = '', body = '') {
+
+    $('#modal-header').text(title);
+    $('#modal-body').text(body);
+    $('#modal1').modal('open');
+
+}
 
 ipcRenderer.on('nmcli-get-connections', (_, data) => {
     const tbody = document.getElementsByTagName('tbody')[0];
@@ -29,17 +37,14 @@ ipcRenderer.on('nmcli-get-connections', (_, data) => {
 });
 
 ipcRenderer.on('info-message', (_, m) => {
-    // console.log(m);
-    new Notification(document.title, {
-        body: m.message,
-        icon: 'img/icon.png'
-    }).onclick = () => {
-        console.log('click!');
-    }
+
+    showModal('Alert', m.message);
+
 });
 
 window.onload = () => {
     ipcRenderer.send('nmcli-get-connections');
+    $('.modal').modal()
 }
 
 setInterval(() => {

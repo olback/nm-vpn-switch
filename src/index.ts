@@ -2,7 +2,7 @@
  * @Author: olback
  * @Date: 2018-07-29 18:40:10
  * @Last Modified by: olback
- * @Last Modified time: 2018-07-29 18:40:30
+ * @Last Modified time: 2018-07-29 23:26:29
  */
 
 import * as electron from 'electron';
@@ -10,10 +10,10 @@ import * as url from 'url';
 import * as path from 'path';
 import * as process from 'process';
 import { mainMenuTemplate } from './components/mainMenuTemplate';
-import { ipcEvents } from './components/ipcEvents';
+import * as ipcEvents from './components/ipcEvents';
 const { app, BrowserWindow, Menu } = electron;
 
-let mainWindow;
+export let mainWindow;
 
 app.on('ready', () => {
 
@@ -55,6 +55,7 @@ app.on('ready', () => {
         mainWindow.webContents.openDevTools();
     }
 
-    ipcEvents();
+    ipcEvents.nmcliActions();
+    ipcEvents.autoStartActions();
 
 });

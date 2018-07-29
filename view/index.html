@@ -10,17 +10,17 @@
         <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css">
         <title>NetworkManager Auto Connect</title>
     </head>
-    <body>  
+    <body>
         <!-- <div class="container"> -->
             <h2 class="title">NetworkManager Auto Connect</h2>
             <table class="highlight centered">
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Connected</th>
+                        <th>Connected / Enabled</th>
                     </tr>
                 </thead>
-        
+
                 <tbody>
                     <!-- <tr>
                         <td>Name</td>
@@ -38,7 +38,19 @@
             </table>
         <!-- </div> -->
 
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4 id="modal-header">Modal Header</h4>
+                <p id="modal-body">A bunch of text</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+            </div>
+        </div>
+
         <script src="js/app.js"></script>
-        <!-- <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script> -->
+        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="../node_modules/hammerjs/hammer.min.js"></script>
+        <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
     </body>
 </html>

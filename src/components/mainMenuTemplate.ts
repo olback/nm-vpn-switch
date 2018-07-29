@@ -1,13 +1,14 @@
 /*
  * @Author: olback
  * @Date: 2018-07-29 18:42:42
- * @Last Modified by:   olback
- * @Last Modified time: 2018-07-29 18:42:42
+ * @Last Modified by: olback
+ * @Last Modified time: 2018-07-29 22:58:46
  */
 
 import * as process from 'process';
 import * as electron from 'electron';
 import * as about from './aboutWindow';
+import * as manageAutostart from './mangeAutostart';
 import * as opn from 'opn';
 
 const { app } = electron;
@@ -35,6 +36,12 @@ export const mainMenuTemplate: Array<any> = [
     {
         label: 'File',
         submenu: [
+            {
+                label: 'Disable all',
+                click() {
+                    manageAutostart.disableAll();
+                }
+            },
             {
                 label: 'Quit',
                 accelerator: accelerator(['Ctrl', 'Q']),
