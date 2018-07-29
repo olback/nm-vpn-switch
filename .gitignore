@@ -1,3 +1,3 @@
-node_modules
-nm-vpn-switch-*/
+node_modules/
+dist/
 out/

@@ -1,3 +1,10 @@
+/*
+ * @Author: olback
+ * @Date: 2018-07-29 18:43:35
+ * @Last Modified by:   olback
+ * @Last Modified time: 2018-07-29 18:43:35
+ */
+
 const electron = require('electron');
 const { ipcRenderer } = electron;
 

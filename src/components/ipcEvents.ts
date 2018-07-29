@@ -1,3 +1,10 @@
+/*
+ * @Author: olback
+ * @Date: 2018-07-29 18:42:37
+ * @Last Modified by:   olback
+ * @Last Modified time: 2018-07-29 18:42:37
+ */
+
 import { ipcMain } from 'electron';
 import * as nmcli from './nmcliInterface';
 

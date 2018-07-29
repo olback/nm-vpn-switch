@@ -1,3 +1,10 @@
+/*
+ * @Author: olback
+ * @Date: 2018-07-29 18:40:10
+ * @Last Modified by: olback
+ * @Last Modified time: 2018-07-29 18:40:30
+ */
+
 import * as electron from 'electron';
 import * as url from 'url';
 import * as path from 'path';

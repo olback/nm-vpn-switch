@@ -1,3 +1,10 @@
+/*
+ * @Author: olback
+ * @Date: 2018-07-29 18:42:42
+ * @Last Modified by:   olback
+ * @Last Modified time: 2018-07-29 18:42:42
+ */
+
 import * as process from 'process';
 import * as electron from 'electron';
 import * as about from './aboutWindow';

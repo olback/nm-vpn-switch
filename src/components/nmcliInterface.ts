@@ -1,3 +1,10 @@
+/*
+ * @Author: olback
+ * @Date: 2018-07-29 18:43:01
+ * @Last Modified by:   olback
+ * @Last Modified time: 2018-07-29 18:43:01
+ */
+
 import { execSync } from 'child_process';
 
 type Connections = Array<Connection>;
@@ -19,13 +26,13 @@ export function getConnections(): Connections {
 
     const raw = execSync('nmcli connection | grep "vpn"').toString();
     const rawArr = raw.split('\n').filter(n => n);
-    
+
     const connections: Connections = [];
 
     rawArr.forEach(con => {
-        
+
         const conParts = con.split('  ').filter(p => p);
-        
+
         connections.push({
             name: conParts[0].trim(),
             uuid: conParts[1].trim(),

@@ -11,8 +11,8 @@
   "scripts": {
     "start": "electron .",
     "dev": "npm run compile && NODE_ENV=dev npm start",
-    "compile_": "tsc --outDir out/ src/*.ts",
-    "compile": "tsc -p ./"
+    "compile": "tsc -p ./",
+    "build": "electron-builder"
   },
   "keywords": [
     "vpn",
@@ -21,15 +21,23 @@
   ],
   "author": "olback",
   "license": "MIT",
+  "build": {
+    "appId": "net.olback.nm-vpn-switch",
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
+    }
+  },
   "dependencies": {
+    "about-window": "^1.12.1",
+    "opn": "^5.3.0",
     "materialize-css": "^1.0.0-rc.2"
   },
   "devDependencies": {
     "@types/node": "^10.5.3",
-    "about-window": "^1.12.1",
     "electron": "^1.8.7",
-    "electron-packager": "^12.1.0",
-    "opn": "^5.3.0",
+    "electron-builder": "^20.26.0",
     "typescript": "^2.9.2"
   }
 }
