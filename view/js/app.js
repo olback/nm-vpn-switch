@@ -2,7 +2,7 @@
  * @Author: olback
  * @Date: 2018-07-29 18:43:35
  * @Last Modified by: olback
- * @Last Modified time: 2018-07-31 16:24:37
+ * @Last Modified time: 2018-07-31 16:54:00
  */
 
 const electron = require('electron');
@@ -53,7 +53,7 @@ window.onload = () => {
 
 setInterval(() => {
     ipcRenderer.send('nmcli-get-connections');
-}, 1000);
+}, 5000);
 
 function c(con) {
     ipcRenderer.send('nmcli-set-active', JSON.parse(atob(con)));

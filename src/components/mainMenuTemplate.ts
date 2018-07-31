@@ -2,13 +2,15 @@
  * @Author: olback
  * @Date: 2018-07-29 18:42:42
  * @Last Modified by: olback
- * @Last Modified time: 2018-07-29 22:58:46
+ * @Last Modified time: 2018-07-31 17:00:54
  */
 
 import * as process from 'process';
 import * as electron from 'electron';
 import * as about from './aboutWindow';
 import * as manageAutostart from './mangeAutostart';
+import * as nmcli from './nmcliInterface';
+import { mainWindow } from '../index';
 import * as opn from 'opn';
 
 const { app } = electron;
@@ -36,6 +38,13 @@ export const mainMenuTemplate: Array<any> = [
     {
         label: 'File',
         submenu: [
+            {
+                label: 'Reload',
+                click() {
+                    mainWindow.webContents.send('nmcli-get-connections', nmcli.getConnections());
+                },
+                accelerator: accelerator(['Ctrl', 'R'])
+            },
             {
                 label: 'Disable all',
                 click() {
