@@ -2,7 +2,7 @@
  * @Author: olback
  * @Date: 2018-07-29 18:43:35
  * @Last Modified by: olback
- * @Last Modified time: 2018-07-29 23:02:56
+ * @Last Modified time: 2018-07-31 16:24:37
  */
 
 const electron = require('electron');
@@ -26,8 +26,12 @@ ipcRenderer.on('nmcli-get-connections', (_, data) => {
             <td>${c.name}</td>
             <td>
             ${
-                c.active ? `<button class="btn waves-effect waves-light red" onclick="d('${btoa(JSON.stringify(c))}')">Disconnect</button>` :
+                c.connected ? `<button class="btn waves-effect waves-light red" onclick="d('${btoa(JSON.stringify(c))}')">Disconnect</button>` :
                 `<button class="btn waves-effect waves-light" onclick="c('${btoa(JSON.stringify(c))}')">Connect</button>`
+            }
+            ${
+                c.enabled ? `<button class="btn waves-effect waves-light red" onclick="da('${btoa(JSON.stringify(c))}')">Disable</button>` :
+                `<button class="btn waves-effect waves-light" onclick="ca('${btoa(JSON.stringify(c))}')">Enable</button>`
             }
             </td>
         </tr>`;
@@ -55,6 +59,14 @@ function c(con) {
     ipcRenderer.send('nmcli-set-active', JSON.parse(atob(con)));
 }
 
+function ca(con) {
+    ipcRenderer.send('manage-autostart-set-enable', JSON.parse(atob(con)));
+}
+
 function d(con) {
     ipcRenderer.send('nmcli-set-deactive', JSON.parse(atob(con)));
+}
+
+function da(con) {
+    ipcRenderer.send('manage-autostart-set-disable', JSON.parse(atob(con)));
 }

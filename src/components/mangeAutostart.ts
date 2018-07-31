@@ -2,10 +2,11 @@
  * @Author: olback
  * @Date: 2018-07-29 21:55:07
  * @Last Modified by: olback
- * @Last Modified time: 2018-07-29 23:42:16
+ * @Last Modified time: 2018-07-31 16:39:55
  */
 
 import { mainWindow } from '../index';
+import * as nmcli from './nmcliInterface';
 import * as path from 'path';
 import * as os from 'os';
 import * as fs from 'fs';
@@ -42,11 +43,65 @@ export function disableAll(): void {
 
 }
 
-// export function enable(uuid: UUIDv4) {
+export function enable(con: nmcli.Connection): void {
 
-// }
+    try {
 
-// export function disable(uuid: UUIDv4) {
+        if (isEnabled(con.uuid)) {
 
-// }
+            throw {
+                error: true,
+                message: 'Alreade enabled.'
+            }
+
+        } else {
+
+            fs.writeFileSync(fp(con.uuid), `[Desktop Entry]\nType=Application\nName=${con.name}\nDescription=Connect ${con.name} on login.\nExec=nmcli con up uuid '${con.uuid}'\n`, { encoding: 'utf8' });
+
+        }
+
+    } catch (e) {
+
+        throw e;
+
+    }
+
+}
+
+export function disable(con: nmcli.Connection): void {
+
+    try {
+
+        if (isEnabled(fp(con.uuid))) {
+
+            fs.unlinkSync(fp(con.uuid));
+
+        } else {
+
+            throw {
+                error: true,
+                message: 'Already disabled.'
+            }
+
+        }
+
+    } catch (e) {
+
+        throw e;
+
+    }
+
+}
+
+export function isEnabled(path: string): boolean {
+
+    return fs.existsSync(path);
+
+}
+
+export function fp(uuid: nmcli.Connection['uuid']): string {
+
+    return path.join(os.homedir(), '.config', 'autostart', `${uuid}.nmac.desktop`)
+
+}
 

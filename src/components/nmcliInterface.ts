@@ -1,11 +1,12 @@
 /*
  * @Author: olback
  * @Date: 2018-07-29 18:43:01
- * @Last Modified by:   olback
- * @Last Modified time: 2018-07-29 18:43:01
+ * @Last Modified by: olback
+ * @Last Modified time: 2018-07-31 16:21:21
  */
 
 import { execSync } from 'child_process';
+import { fp, isEnabled } from './mangeAutostart';
 
 type Connections = Array<Connection>;
 
@@ -14,7 +15,8 @@ export interface Connection {
     uuid: string;
     type: string;
     interface: string | null;
-    active: boolean;
+    connected: boolean;
+    enabled: boolean;
 }
 
 /**
@@ -38,7 +40,8 @@ export function getConnections(): Connections {
             uuid: conParts[1].trim(),
             type: conParts[2].trim(),
             interface: conParts[3].trim() !== '--' ? conParts[3].trim() : null,
-            active: conParts[3].trim() !== '--' ? true : false
+            connected: conParts[3].trim() !== '--' ? true : false,
+            enabled: isEnabled(fp(conParts[1].trim()))
         });
 
     })
@@ -47,11 +50,11 @@ export function getConnections(): Connections {
 
 }
 
-export function setActive(uuid: Connection['uuid']): void {
+export function setActive(con: Connection): void {
 
     try {
 
-        execSync(`nmcli connection up uuid '${uuid}'`);
+        execSync(`nmcli connection up uuid '${con.uuid}'`);
 
     } catch (e) {
 
@@ -61,11 +64,11 @@ export function setActive(uuid: Connection['uuid']): void {
 
 }
 
-export function setDeactive(uuid: Connection['uuid']): void {
+export function setDeactive(con: Connection): void {
 
     try {
 
-        execSync(`nmcli connection down uuid '${uuid}'`);
+        execSync(`nmcli connection down uuid '${con.uuid}'`);
 
     } catch (e) {
 
@@ -75,24 +78,3 @@ export function setDeactive(uuid: Connection['uuid']): void {
 
 }
 
-// /**
-//  * Returns an array of active Connections.
-//  * Returns an empty array if there are no connections.
-//  * @returns Connections<Connection>
-//  */
-// export function getActive(): Connections {
-
-//     const connections: Connections = getConnections();
-//     const active: Connections = [];
-
-//     connections.forEach(con => {
-
-//         if (con.active) {
-//             active.push(con);
-//         }
-
-//     });
-
-//     return active;
-
-// }
